@@ -18,7 +18,6 @@ Imports:
     dplyr,
     maps,
     lubridate,
-    testthat.
     tidyr,
     readr,
     graphics
