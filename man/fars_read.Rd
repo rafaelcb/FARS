@@ -17,7 +17,7 @@ This function checks if the input file exists and then reads it. If the file
 does not exist the function will stop with an error.
 }
 \examples{
-fars_read("accident_1995.csv.bz2")
-fars_read("accident_2010.csv.bz2")
+\dontrun{fars_read("accident_1995.csv.bz2")}
+\dontrun{fars_read("accident_2010.csv.bz2")}
 
 }

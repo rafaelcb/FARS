@@ -23,6 +23,6 @@ The csv files with the data need to be downloaded previously from the
   (\url{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars})
 }
 \examples{
-#' fars_summarize_years(2010)
-fars_summarize_years(2012:2015)
+\dontrun{fars_summarize_years(2010)}
+\dontrun{fars_summarize_years(2012:2015)}
 }

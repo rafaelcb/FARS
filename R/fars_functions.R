@@ -11,12 +11,12 @@
 #' @importFrom dplyr tbl_df
 #'
 #' @examples
-#' fars_read("accident_1995.csv.bz2")
-#' fars_read("accident_2010.csv.bz2")
+#' \dontrun{fars_read("accident_1995.csv.bz2")}
+#' \dontrun{fars_read("accident_2010.csv.bz2")}
 #'
 #' @export
 fars_read <- function(filename) {
-    if(!file.exists(filename))
+    if (!file.exists(filename))
         stop("file '", filename, "' does not exist")
     data <- suppressMessages({
         readr::read_csv(filename, progress = FALSE)
@@ -62,8 +62,8 @@ make_filename <- function(year) {
 #'   years.
 #'
 #' @examples
-#' fars_read_years(2010)
-#' fars_read_years(2010:2015)
+#' \dontrun{fars_read_years(2010)}
+#' \dontrun{fars_read_years(2010:2015)}
 #'
 #' @importFrom dplyr mutate select
 #'
@@ -78,8 +78,8 @@ fars_read_years <- function(years) {
         file <- make_filename(year)
         tryCatch({
             dat <- fars_read(file)
-            dplyr::mutate(dat, year = year) %>%
-                dplyr::select(MONTH, year)
+            dplyr::mutate_(dat, "year" = year) %>%
+                dplyr::select_("MONTH", "year")
         }, error = function(e) {
             warning("invalid year: ", year)
             return(NULL)
@@ -105,15 +105,15 @@ fars_read_years <- function(years) {
 #' @importFrom tidyr spread
 #'
 #' @examples
-#' #' fars_summarize_years(2010)
-#' fars_summarize_years(2012:2015)
+#' \dontrun{fars_summarize_years(2010)}
+#' \dontrun{fars_summarize_years(2012:2015)}
 #' @export
 fars_summarize_years <- function(years) {
     dat_list <- fars_read_years(years)
     dplyr::bind_rows(dat_list) %>%
-        dplyr::group_by(year, MONTH) %>%
-        dplyr::summarize(n = n()) %>%
-        tidyr::spread(year, n)
+        dplyr::group_by_("year", "MONTH") %>%
+        dplyr::tally() %>%
+        tidyr::spread_(key_col = "year", value_col = "n")
 }
 
 #' Create map with Fatality Analysis Reporting System data
@@ -133,7 +133,7 @@ fars_summarize_years <- function(years) {
 #' @return Plots a map with points marking the locations of accidents.
 #'
 #' @examples
-#' fars_map_state(3, 2010)
+#' \dontrun{fars_map_state(3, 2015)}
 #'
 #' @importFrom maps map
 #' @importFrom graphics points
@@ -144,10 +144,10 @@ fars_map_state <- function(state.num, year) {
     data <- fars_read(filename)
     state.num <- as.integer(state.num)
 
-    if(!(state.num %in% unique(data$STATE)))
+    if (!(state.num %in% unique(data$STATE)))
         stop("invalid STATE number: ", state.num)
-    data.sub <- dplyr::filter(data, STATE == state.num)
-    if(nrow(data.sub) == 0L) {
+    data.sub <- dplyr::filter_(data, paste0("STATE == ", state.num, "L"))
+    if (nrow(data.sub) == 0L) {
         message("no accidents to plot")
         return(invisible(NULL))
     }

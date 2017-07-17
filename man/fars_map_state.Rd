@@ -26,6 +26,6 @@ The csv files with the data need to be downloaded previously from the
   (\url{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars})
 }
 \examples{
-fars_map_state(3, 2010)
+\dontrun{fars_map_state(3, 2015)}
 
 }
