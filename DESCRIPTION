@@ -14,3 +14,11 @@ RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
+Imports:
+    dplyr,
+    maps,
+    lubridate,
+    testthat.
+    tidyr,
+    readr,
+    graphics
