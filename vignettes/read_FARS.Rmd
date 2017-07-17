@@ -1,6 +1,6 @@
 ---
 title: "Reading and summarising FARS data"
-author: "Vignette Author"
+author: "Rafael Castrillo"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
