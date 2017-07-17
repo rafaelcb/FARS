@@ -1,0 +1,63 @@
+---
+title: "Reading and summarising FARS data"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction to the FARS data
+
+The `FARS` package provides functionality to read into R and explore data downloaded from the Fatality Analysis Reporting System (FARS).
+According to the [FARS website](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars)
+
+> Detailing the Factors Behind Traffic Fatalities on our Roads - FARS is a nationwide census providing NHTSA, Congress and the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes.
+
+Raw data is available from 1975 onwards. The dataset includes fatal crash data for the following:
+
+- Motor vehicles
+- Motorcyclists
+- Nonmotorists
+- Total fatalities
+
+## The FARS package
+```{r echo = FALSE}
+library(FARS)
+library(dplyr)
+```
+
+The `FARS` package provides functionality to explore the raw data from the website. In particular, the following three functions can be used to read and explore this data. The corresponding csv files need to be downloaded from the website previously, saved in the working directory and renamed using the format `accident_year.csv.bs2`.
+
+### `fars_read_years`
+
+The `fars_read_years` function reads in the data for one or multiple years and generates a list of *tibbles* with the information. 
+
+```{r}
+fars_read_years(2015)
+```
+
+
+### `fars_summarize_years`
+
+This function generates a summary of fatal crashes by year and month.
+
+```{r}
+fars_summarize_years(2015)
+```
+
+### `fars_map_state`
+
+Finally, the `fars_map_state` creates a map with the fatality data for the chosen states (as numbers).
+
+```{r}
+fars_map_state(c1:10, 2015)
+```
+
+
+
+
+
+
