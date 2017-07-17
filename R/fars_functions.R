@@ -9,6 +9,7 @@
 #'
 #' @importFrom readr read_csv
 #' @importFrom dplyr tbl_df
+#' @import magrittr
 #'
 #' @examples
 #' \dontrun{fars_read("accident_1995.csv.bz2")}
