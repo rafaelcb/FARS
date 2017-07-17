@@ -52,8 +52,8 @@ fars_summarize_years(2015)
 
 Finally, the `fars_map_state` creates a map with the fatality data for the chosen states (as numbers).
 
-```{r}
-fars_map_state(c1:10, 2015)
+```{r run}
+fars_map_state(1:10, 2015)
 ```
 
 

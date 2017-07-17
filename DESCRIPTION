@@ -3,7 +3,7 @@ Type: Package
 Title: Read in and explore FARS data
 Version: 0.1.0
 Author: Rafael Castrillo
-Maintainer: Rafael Castrillo
+Maintainer: Rafael Castrillo <rcastrillo123@something.com>
 Description: This package reads in and provides functionality to explore the
     FARS data. In particular, it includes functions to summarise fatalities by
     month and year and to map fatalities by state.
